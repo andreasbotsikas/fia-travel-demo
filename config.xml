@@ -5,7 +5,7 @@
   <!-- Description is shown when installing widget -->
   <description>Webinos Travel is a cross-device travel manager. Travel plans can be created and updated on any webinos-enabled CE device. The itineraries are synced across the devices within a personal zone. Webinos travel lets you directly interact with the on-board naviation system.</description>
   <!-- Start page for widget -->
-  <content src="automotive/index.html" />
+  <content src="index.html" />
   <!-- Default icon for widget -->
   <icon src="logo.png" />
   <!-- Widget author -->
