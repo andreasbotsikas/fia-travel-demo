@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.webinos.org/app-travel-manager" version="1.0" height="540" width="960">
+  <!-- Name of the widget -->
+  <name short="travel-manager">travel manager</name>
+  <!-- Description is shown when installing widget -->
+  <description>Webinos Travel is a cross-device travel manager. Travel plans can be created and updated on any webinos-enabled CE device. The itineraries are synced across the devices within a personal zone. Webinos travel lets you directly interact with the on-board naviation system.</description>
+  <!-- Start page for widget -->
+  <content src="automotive/index.html" />
+  <!-- Default icon for widget -->
+  <icon src="logo.png" />
+  <!-- Widget author -->
+  <author href="http://webinos.org">Simon Isenberg</author>
+  <!-- No webinos feature is required -->
+  <!-- Distributed under the Apache 2.0 licence -->
+  <license href="http://www.apache.org/licenses/LICENSE-2.0.html">Distributed under the Apache 2.0 License.</license>
+</widget>
