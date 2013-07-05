@@ -437,10 +437,14 @@ transition: all .5s ease-out;
 	
 
 }
-
+#selection-content ul li a.selected:focus,
 #selection-content ul li a.selected{
 	opacity: 1;
 	font-weight: bold;
+	background-color: green; 
+	border:1px solid red;  
+	color:#fff;
+
 }
 
 
@@ -492,10 +496,6 @@ transition: all .5s ease-out;
 	margin-left: 133px;
 }
 	
-.hidden{
-	background-color: #1f1f1f;
-}
-
 .iconproperty{
 	position: absolute;
 	top: 30%;
@@ -503,3 +503,26 @@ transition: all .5s ease-out;
 	height: 70%;
 	height: auto;
 }
+
+
+.hidden{
+ 	background-color: green; 
+	border:1px solid red; 
+	height:100%; 
+	display: block; 
+
+	text-align: center;
+	position: relative;
+	font-weight: normal;
+	font-size: 18px;
+
+ 
+ }
+#selection-content ul li .hidden:focus,
+#selection-content ul li .hidden:hover{
+    font-weight: normal;
+    background-color: green; 
+    border:1px solid red;  
+    font-size: 18px;
+}
+ 

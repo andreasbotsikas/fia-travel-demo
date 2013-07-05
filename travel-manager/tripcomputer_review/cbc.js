@@ -153,8 +153,9 @@ function findGeolocation(){
 	geolocation = null;
 	
 	webinos.discovery.findServices( 
-	new ServiceType('http://webinos.org/api/w3c/geolocation'),
-	{onFound: function (service) {
+	//new ServiceType('http://webinos.org/api/w3c/geolocation'),
+ 	new ServiceType('http://www.w3.org/ns/api-perms/geolocation'),
+ 	{onFound: function (service) {
 		updateStatus('geolocation service found');
 		geolocation = service;
 		bindToGeolocation();
@@ -274,44 +275,68 @@ $(document).ready(function() {
 		$('#customfield5').focus();
 	});
 	$('a[id*="selecter-"]').bind('click', function(){
-		$('#selection').addClass('disabled');
+		/*when click on a tab (es Speed or Gear) in the popup "please select a property" add a class disabled means that 
+		the view "please select a property" became invisible (display=none)*/
+ 	if ($('#'+this.id).attr("class")!="hidden")
+ 	{	 
+ 		$('#selection').addClass('disabled');
 		console.log(this.id);
-		for(var i = 0; i < dataModel.length; i++){
+ 
+  		for(var i = 0; i < dataModel.length; i++){
+ 			//initially currentCustomField is empty and customfield are the first chosen by the programmer
 			if(dataModel[i].customField == currentCustomField){
 				dataModel[i].customField = null;
 			}
+			//this.id give id of the object where I've clicked, es. "selecter-heading" if I click on heading
 			if(this.id == dataModel[i].id){
 				//SETTING NEW DATA ON FIELD;
 				$('#'+currentCustomField).find(".unit").html(dataModel[i].unit);
 				$('#'+currentCustomField).find(".value").html(dataModel[i].defaultV);
 				$('#'+currentCustomField).find(".description").html(dataModel[i].desc);
 				dataModel[i].customField = currentCustomField;
-				break;
+				//break;
 			}
 		}
 		$('#'+currentCustomField).focus();
-	});
+	}
+ 	});
 	
 	$('a[id*="customfield"]').bind('click', function(){
 	
 		
+		/*  set the currentCustomField to the current fields that are:
+		 *  customField1
+		 *  customField2
+		 *  customField3
+		 *  customField4
+		 *  customField5
+		*/
+		
+	        //set the variable currentCustomField with the id of the field in which I've clicked
 		currentCustomField = this.id;
 		selecterOn = true;
-		
+		// remove in every field the classes "selected" and "hidden"
 		$('a[id*="selecter-"]').removeClass('selected');
 		$('a[id*="selecter-"]').removeClass('hidden');
 		
 		var selected = 0;
-		
+  		//this block of code is to marked as SELECTED (with some graphic effect) the field where I've clicked on myView
 		for(var i = 0; i < dataModel.length; i++){
 			if(dataModel[i].customField == this.id){
+ 				$('#' + dataModel[i].id).attr("href","#geek");
 				$('#' + dataModel[i].id).addClass('selected');
-				selected = i;
-			}else if(dataModel[i].customField != null){
+  				selected = i;
+			}
+			/*this block is to mark as HIDDEN (with some graphic effect) the field which are already present in the previous 
+			myView window */
+			else if(dataModel[i].customField != null){
+				$('#' + dataModel[i].id).removeAttr("href");
 				$('#' + dataModel[i].id).addClass('hidden');
 			}
 		}
+		//to show the view "please select properties"
 		$('#selection').removeClass('disabled');
+		//to give the focus to the field from where I came from
 		$('#' + dataModel[selected].id).focus();
 	});
 
@@ -367,18 +392,18 @@ function handleAverageData(data){
 	$('#v-range').html(data.range);
 	$('#v-mileage').html(data.mileage);
 	
-	dataModel[8].defaultV = data.averageConsumption1;
-	dataModel[9].defaultV =data.averageSpeed1;
+	dataModel[8].defaultV = data.averageConsumption;
+	dataModel[9].defaultV =data.averageSpeed;
 	dataModel[10].defaultV =data.mileage;
 	dataModel[11].defaultV =data.tripDistance;
 	dataModel[12].defaultV =data.range;
 	
 	if(dataModel[8].customField != null){
-		$('#' + dataModel[8].customField).find('.value').html(data.averageConsumption1);
+		$('#' + dataModel[8].customField).find('.value').html(data.averageConsumption);
 		
 	}
 	if(dataModel[9].customField != null){
-		$('#' + dataModel[9].customField).find('.value').html(data.averageSpeed1);
+		$('#' + dataModel[9].customField).find('.value').html(data.averageSpeed);
 		
 	}
 	if(dataModel[10].customField != null){
